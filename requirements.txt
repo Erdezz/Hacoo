@@ -1,4 +1,2 @@
-
-python -m playwright install
 playwright
 requests
