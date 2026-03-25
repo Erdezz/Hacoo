@@ -2,23 +2,28 @@ name: Bot Discord HACOO
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
-  workflow_dispatch:
+    - cron: "*/5 * * * *"  # Exécution toutes les 5 minutes
+  workflow_dispatch:  # Permet de lancer manuellement
 
 jobs:
   run:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3  # Récupère le code
 
       - name: Installer Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      - name: Installer dépendances
-        run: pip install -r requirements.txt
+      - name: Installer les dépendances
+        run: |
+          pip install -r requirements.txt  # Installe les dépendances du fichier requirements.txt
+
+      - name: Installer Playwright et ses navigateurs
+        run: |
+          python -m playwright install  # Installe les navigateurs nécessaires
 
       - name: Lancer le bot
-        run: python bot.py
+        run: python bot.py  # Lance ton bot
