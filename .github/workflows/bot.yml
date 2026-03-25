@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3  # Récupère le code
+      - uses: actions/checkout@v3  # Récupère le code du repo
 
       - name: Installer Python
         uses: actions/setup-python@v4
@@ -18,12 +18,12 @@ jobs:
           python-version: "3.10"
 
       - name: Installer les dépendances
-        run: |
-          pip install -r requirements.txt  # Installe les dépendances du fichier requirements.txt
+        run: pip install -r requirements.txt  # Installe les dépendances du fichier requirements.txt
 
       - name: Installer Playwright et ses navigateurs
         run: |
+          python -m pip install playwright  # Installe Playwright
           python -m playwright install  # Installe les navigateurs nécessaires
 
       - name: Lancer le bot
-        run: python bot.py  # Lance ton bot
+        run: python bot.py  # Lance le bot
